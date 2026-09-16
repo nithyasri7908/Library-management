@@ -1,0 +1,297 @@
+{
+  "info": {
+    "name": "Library Management System API",
+    "_postman_id": "c1f72922-921d-4eb4-bcae-219ad372e901",
+    "description": "Postman API Collection for testing college-level Library Management System CRUD REST API endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/dashboard/stats/",
+              "host": ["{{base_url}}"],
+              "path": ["dashboard", "stats", ""]
+            },
+            "description": "Fetch aggregate metrics (total books, available books, borrowed books, members, active loans, overdue loans)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "1. List All Books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/books/",
+              "host": ["{{base_url}}"],
+              "path": ["books", ""]
+            }
+          }
+        },
+        {
+          "name": "2. Search and Filter Books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/books/?search=Algorithms&category=Computer Science",
+              "host": ["{{base_url}}"],
+              "path": ["books", ""],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "Algorithms"
+                },
+                {
+                  "key": "category",
+                  "value": "Computer Science"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "3. Create a Book (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Introduction to Algorithms\",\n  \"author\": \"Thomas H. Cormen\",\n  \"isbn\": \"978-0262033848\",\n  \"category\": \"Computer Science\",\n  \"publisher\": \"MIT Press\",\n  \"publication_year\": 2009,\n  \"quantity\": 5,\n  \"available_quantity\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/books/",
+              "host": ["{{base_url}}"],
+              "path": ["books", ""]
+            }
+          }
+        },
+        {
+          "name": "4. Get Book by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/books/1/",
+              "host": ["{{base_url}}"],
+              "path": ["books", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "5. Update Book (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Introduction to Algorithms (4th Edition)\",\n  \"author\": \"Thomas H. Cormen\",\n  \"isbn\": \"978-0262033848\",\n  \"category\": \"Computer Science\",\n  \"publisher\": \"MIT Press\",\n  \"publication_year\": 2022,\n  \"quantity\": 6,\n  \"available_quantity\": 6\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/books/1/",
+              "host": ["{{base_url}}"],
+              "path": ["books", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "6. Delete Book (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/books/1/",
+              "host": ["{{base_url}}"],
+              "path": ["books", "1", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "1. List All Members",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/members/",
+              "host": ["{{base_url}}"],
+              "path": ["members", ""]
+            }
+          }
+        },
+        {
+          "name": "2. Create Member (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"member_id\": \"LIB-2026-101\",\n  \"name\": \"Sarah Jenkins\",\n  \"email\": \"sarah.jenkins@college.edu\",\n  \"phone\": \"+1-555-0192\",\n  \"department\": \"Computer Science\",\n  \"registration_date\": \"2026-09-01\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/members/",
+              "host": ["{{base_url}}"],
+              "path": ["members", ""]
+            }
+          }
+        },
+        {
+          "name": "3. Get Member by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/members/1/",
+              "host": ["{{base_url}}"],
+              "path": ["members", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "4. Update Member (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"member_id\": \"LIB-2026-101\",\n  \"name\": \"Sarah Jenkins-Davis\",\n  \"email\": \"sarah.jd@college.edu\",\n  \"phone\": \"+1-555-0192\",\n  \"department\": \"Information Technology\",\n  \"registration_date\": \"2026-09-01\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/members/1/",
+              "host": ["{{base_url}}"],
+              "path": ["members", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "5. Delete Member (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/members/1/",
+              "host": ["{{base_url}}"],
+              "path": ["members", "1", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Borrow Records",
+      "item": [
+        {
+          "name": "1. List Borrow Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/borrow-records/",
+              "host": ["{{base_url}}"],
+              "path": ["borrow-records", ""]
+            }
+          }
+        },
+        {
+          "name": "2. Issue Book to Member (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"book\": 1,\n  \"member\": 1,\n  \"issue_date\": \"2026-09-12\",\n  \"due_date\": \"2026-09-26\",\n  \"status\": \"Issued\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/borrow-records/",
+              "host": ["{{base_url}}"],
+              "path": ["borrow-records", ""]
+            }
+          }
+        },
+        {
+          "name": "3. Return Book (POST Action)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/borrow-records/1/return/",
+              "host": ["{{base_url}}"],
+              "path": ["borrow-records", "1", "return", ""]
+            },
+            "description": "Marks record as Returned, logs return_date, and increments book available_quantity."
+          }
+        },
+        {
+          "name": "4. Filter by Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/borrow-records/?status=Overdue",
+              "host": ["{{base_url}}"],
+              "path": ["borrow-records", ""],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Overdue"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

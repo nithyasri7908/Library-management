@@ -1,0 +1,6 @@
+{
+  "name": "Library Management System",
+  "description": "A full-stack college-level Library Management System with CRUD operations for books, members, and borrowing records, complete with Django REST Framework backend architecture, REST API, and interactive dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

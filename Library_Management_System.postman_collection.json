@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "c1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+		"name": "Library Management System",
+		"description": "API Test Suite for the Library Management System project.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "GET all books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/books/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"books",
+								""
+							]
+						}
+					}
+				},
+				{
+					"name": "POST valid book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Clean Code\",\n    \"author\": \"Robert C. Martin\",\n    \"isbn\": \"9780132350884\",\n    \"category\": \"Computer Science\",\n    \"quantity\": 5\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/books/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"books",
+								""
+							]
+						}
+					}
+				},
+				{
+					"name": "POST missing title",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author\": \"Robert C. Martin\",\n    \"isbn\": \"9780132350885\",\n    \"quantity\": 5\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/books/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"books",
+								""
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "GET all members",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/members/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members",
+								""
+							]
+						}
+					}
+				},
+				{
+					"name": "POST valid member",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alice Smith\",\n    \"member_id\": \"STU-001\",\n    \"email\": \"alice@college.edu\",\n    \"phone\": \"555-0100\",\n    \"department\": \"Computer Science\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/members/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members",
+								""
+							]
+						}
+					}
+				},
+				{
+					"name": "POST invalid email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bob Jones\",\n    \"member_id\": \"STU-002\",\n    \"email\": \"not-an-email\",\n    \"phone\": \"555-0101\",\n    \"department\": \"Physics\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/members/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members",
+								""
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Borrow Records",
+			"item": [
+				{
+					"name": "Issue available book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book\": 1,\n    \"member\": 1,\n    \"issue_date\": \"2026-09-14\",\n    \"due_date\": \"2026-09-28\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/borrow-records/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"borrow-records",
+								""
+							]
+						}
+					}
+				},
+				{
+					"name": "Return issued book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/borrow-records/1/return/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"borrow-records",
+								"1",
+								"return",
+								""
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:3000/api"
+		}
+	]
+}
